@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Ylioppilas tilastot</title>
 </head>
 
 <body>
@@ -13,16 +16,112 @@
     <p>Tällä sivulla näet valmistuneiden ylioppilaiden koesuoritukset. Pystyt suodattamaan tulokset koko maan, kaupungin
         ja koulun tasolla</p>
 
+    <h5>Yhteensä ylioppilaita: </h5>
+
     <form action="#">
         <input type="text" placeholder="valmistus kerta">
     </form>
 
-    <table>
+    <table class="table">
+        <thead class=" thead-dark">
+            <tr>
+                <th>Lukio</th>
+                <th>pisteet</th>
+
+                <th>A</th>
+                <th>A5</th>
+                <th>BA</th>
+                <th>BB</th>
+                <th>BI</th>
+                <th>CA</th>
+                <th>CB</th>
+                <th>DC</th>
+                <th>EA</th>
+                <th>EC</th>
+                <th>ET</th>
+                <th>FA</th>
+                <th>FC</th>
+                <th>FF</th>
+                <th>FY</th>
+                <th>GC</th>
+                <th>GE</th>
+                <th>HI</th>
+                <th>I</th>
+                <th>IC</th>
+                <th>KE</th>
+                <th>L1</th>
+                <th>L7</th>
+                <th>M</th>
+                <th>N</th>
+                <th>O</th>
+                <th>O5</th>
+                <th>PA</th>
+                <th>PC</th>
+                <th>PS</th>
+                <th>Q</th>
+                <th>QC</th>
+                <th>SA</th>
+                <th>SC</th>
+                <th>TC</th>
+                <th>TE</th>
+                <th>UE</th>
+                <th>UO</th>
+                <th>VA</th>
+                <th>VC</th>
+                <th>W</th>
+                <th>YH</th>
+                <th>Z</th>
+            </tr>
+        </thead>
+
         {%for post in posts %}
         <tr>
             <td>{{ post['koulun_nimi'] }}</td>
             <td>{{ post['yht'] }}</td>
-            <td>{{ post['gmail'] }}</td>
+            <td>{{ post['A'] }}</td>
+            <td>{{ post['O'] }}</td>
+            <td>{{ post['A5'] }}</td>
+            <td>{{ post['BA'] }}</td>
+            <td>{{ post['BB'] }}</td>
+            <td>{{ post['BI'] }}</td>
+            <td>{{ post['CA'] }}</td>
+            <td>{{ post['CB'] }}</td>
+            <td>{{ post['DC'] }}</td>
+            <td>{{ post['EA'] }}</td>
+            <td>{{ post['EC'] }}</td>
+            <td>{{ post['ET'] }}</td>
+            <td>{{ post['FA'] }}</td>
+            <td>{{ post['FC'] }}</td>
+            <td>{{ post['FF'] }}</td>
+            <td>{{ post['FY'] }}</td>
+            <td>{{ post['GC'] }}</td>
+            <td>{{ post['GE'] }}</td>
+            <td>{{ post['HI'] }}</td>
+            <td>{{ post['I'] }}</td>
+            <td>{{ post['IC'] }}</td>
+            <td>{{ post['KE'] }}</td>
+            <td>{{ post['L1'] }}</td>
+            <td>{{ post['L7'] }}</td>
+            <td>{{ post['M'] }}</td>
+            <td>{{ post['N'] }}</td>
+            <td>{{ post['O'] }}</td>
+            <td>{{ post['O5'] }}</td>
+            <td>{{ post['PA'] }}</td>
+            <td>{{ post['PC'] }}</td>
+            <td>{{ post['PS'] }}</td>
+            <td>{{ post['Q'] }}</td>
+            <td>{{ post['QC'] }}</td>
+            <td>{{ post['SA'] }}</td>
+            <td>{{ post['SC'] }}</td>
+            <td>{{ post['TC'] }}</td>
+            <td>{{ post['TE'] }}</td>
+            <td>{{ post['UE'] }}</td>
+            <td>{{ post['UO'] }}</td>
+            <td>{{ post['VA'] }}</td>
+            <td>{{ post['VC'] }}</td>
+            <td>{{ post['W'] }}</td>
+            <td>{{ post['YH'] }}</td>
+            <td>{{ post['Z'] }}</td>
         </tr>
         {%endfor%}
     </table>

@@ -1,6 +1,7 @@
 
 from flask import Flask, render_template     
 import sqlite3 
+from cs50 import SQL
 
 
 
@@ -19,8 +20,10 @@ def home():
     con = sqlite3.connect("tilastot.db")
     con.row_factory = sqlite3.Row
     cur = con.cursor()
-    cur.execute("SELECT * FROM tilastot LIMIT 10")
+    cur.execute("SELECT * FROM tilastot LIMIT 5")
     rows = cur.fetchall();
+
+    print(rows[1]["A"])
     return render_template('index.html',posts = rows)
 
     
