@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/styles.css">
 
     <title>Ylioppilas tilastot</title>
 </head>
@@ -19,17 +20,19 @@
     <h5>Yhteensä ylioppilaita: </h5>
 
     <form action="#">
-        <input type="text" placeholder="valmistus kerta">
+        <input type="text" placeholder="lukio">
     </form>
 
 
-    <table class="">
-        <thead class=" thead-dark">
+    <table class="table">
+        <thead class=" thead-dark small">
             <tr>
+                <th>Sijoitus</th>
                 <th>Lukio</th>
+                <th>Sukupuoli</th>
                 <th>pisteet</th>
 
-                {% for column in ['A', 'O', 'Z', 'I', 'W', 'Q', 'A5', 'O5', 'M', 'N', 'BI', 'FF', 'FY', 'HI', 'PS',
+                <!-- {% for column in ['A', 'O', 'Z', 'I', 'W', 'Q', 'A5', 'O5', 'M', 'N', 'BI', 'FF', 'FY', 'HI', 'PS',
                 'UE',
                 'UO', 'ET', 'GE', 'KE', 'TE', 'YH', 'BA', 'BB', 'CA', 'CB', 'EA', 'FA', 'SA', 'PA', 'VA', 'EC', 'FC',
                 'SC',
@@ -37,27 +40,52 @@
 
 
                 <th>{{ column }}</th>
-                {% endfor %}
+                {% endfor %} -->
+
+                <!-- {% for post in exams %}
+                <th class="small"> {{ post[0] }}</th>
+
+                {% endfor %} -->
 
             </tr>
         </thead>
 
         {% set value_to_letter = {"0": 'I',"2": 'A','3': 'B','4': 'C', '5': 'M','6': 'E', "7": 'L'} %}
+        {% set gender = {"1": "m", "2":"n", } %}
 
         {% for post in posts %}
         <tr>
+            <td> {{ loop.index }}. </td>
             <td>{{ post['koulun_nimi'] }}</td>
+            <td>{{ gender[post['sukup']] }}</td>
             <td>{{ post['yht'] }}</td>
 
+            {% set values = [] %}
             {% for column in ['A', 'O', 'Z', 'I', 'W', 'Q', 'A5', 'O5', 'M', 'N', 'BI', 'FF', 'FY', 'HI', 'PS', 'UE',
             'UO', 'ET', 'GE', 'KE', 'TE', 'YH', 'BA', 'BB', 'CA', 'CB', 'EA', 'FA', 'SA', 'PA', 'VA', 'EC', 'FC', 'SC',
             'PC', 'VC', 'DC', 'IC', 'QC', 'GC', 'TC', 'L1', 'L7'] %}
             {% set value = post[column] %}
-            <td>{{ value_to_letter[value] }}</td>
-            <!-- {% if value %} THIS IS TO SAVE SPACE SO IT ONLY SHOWS THE VALUES
-
-            {% endif %} -->
+            {% if value %}
+            {% set values = values.append(value) %}
+            {% endif %}
             {% endfor %}
+
+            {% set sorted_values = values|sort(reverse=True) %}
+
+            {% for value in sorted_values %}
+            <td>{{ value_to_letter[value] }}</td>
+            {% endfor %}
+
+            <!-- {% for column in ['A', 'O', 'Z', 'I', 'W', 'Q', 'A5', 'O5', 'M', 'N', 'BI', 'FF', 'FY', 'HI', 'PS', 'UE',
+            'UO', 'ET', 'GE', 'KE', 'TE', 'YH', 'BA', 'BB', 'CA', 'CB', 'EA', 'FA', 'SA', 'PA', 'VA', 'EC', 'FC', 'SC',
+            'PC', 'VC', 'DC', 'IC', 'QC', 'GC', 'TC', 'L1', 'L7'] %}
+            {% set value = post[column] %}
+
+            {% if value %}
+            <td>{{ value_to_letter[value] }}</td>
+
+            {% endif %}
+            {% endfor %} -->
         </tr>
         {% endfor %}
 
