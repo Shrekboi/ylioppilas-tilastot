@@ -20,10 +20,10 @@ def home():
     con = sqlite3.connect("tilastot.db")
     con.row_factory = sqlite3.Row
     cur = con.cursor()
-    cur.execute("SELECT * FROM tilastot LIMIT 5")
+    cur.execute("SELECT * FROM '2024' WHERE koulun_nimi='Tikkurilan lukio' ORDER BY CAST(yht AS INT) DESC LIMIT 100")
     rows = cur.fetchall();
 
-    print(rows[1]["A"])
+    #print(rows[1]["A"])
     return render_template('index.html',posts = rows)
 
     
