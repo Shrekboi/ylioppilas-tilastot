@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template     
+from flask import Flask, render_template, request  
 import sqlite3 
 from cs50 import SQL
 
@@ -37,7 +37,19 @@ def home():
     # #print(rows[1]["A"])
     # return render_template('index.html',posts = rows, exams=exams)
 
-    grades = db.execute("SELECT * FROM '2024' WHERE koulun_nimi='Tikkurilan lukio' ORDER BY CAST(yht AS INT) DESC")
+    searchLukio = request.args.get("lukio")
+
+    if searchLukio == "":
+        print("NO VALUES")
+        grades = db.execute("SELECT * FROM '2024' ORDER BY CAST(yht AS INT) DESC LIMIT 1000")
+    else:
+        grades = db.execute("SELECT * FROM '2024' WHERE koulun_nimi=? ORDER BY CAST(yht AS INT) DESC", searchLukio)
+
+
+
+    
+
+   
 
     return render_template("index.html", posts=grades)
 

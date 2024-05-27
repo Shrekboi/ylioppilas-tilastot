@@ -13,14 +13,21 @@
 </head>
 
 <body>
-    <h1>Ylioppilas tilastot</h1>
-    <p>Tällä sivulla näet valmistuneiden ylioppilaiden koesuoritukset. Pystyt suodattamaan tulokset koko maan, kaupungin
-        ja koulun tasolla</p>
 
-    <h5>Yhteensä ylioppilaita: </h5>
+    <header>
+        <img src="static/yo-logo.png" alt="huh">
+        <h1>Ylioppilas tilastot</h1>
+    </header>
 
-    <form action="#">
-        <input type="text" placeholder="lukio">
+
+    <p>Tällä sivulla näet valmistuneiden ylioppilaiden koesuoritukset. Pystyt suodattamaan tulokset koko maan tai koulun
+        tasolla</p>
+
+    <!-- <h5>Yhteensä ylioppilaita: </h5> -->
+
+    <form action="/" method="get">
+        <input type="text" placeholder="lukio" name="lukio">
+        <button type="submit"> Hae </button>
     </form>
 
 
@@ -29,7 +36,7 @@
             <tr>
                 <th>Sijoitus</th>
                 <th>Lukio</th>
-                <th>Sukupuoli</th>
+                <!-- <th>Sukupuoli</th> -->
                 <th>pisteet</th>
 
                 <!-- {% for column in ['A', 'O', 'Z', 'I', 'W', 'Q', 'A5', 'O5', 'M', 'N', 'BI', 'FF', 'FY', 'HI', 'PS',
@@ -57,7 +64,7 @@
         <tr>
             <td> {{ loop.index }}. </td>
             <td>{{ post['koulun_nimi'] }}</td>
-            <td>{{ gender[post['sukup']] }}</td>
+            <!-- <td>{{ gender[post['sukup']] }}</td> -->
             <td>{{ post['yht'] }}</td>
 
             {% set values = [] %}
