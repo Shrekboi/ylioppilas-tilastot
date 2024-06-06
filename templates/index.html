@@ -20,10 +20,15 @@
     </header>
 
 
-    <p>Tällä sivulla näet valmistuneiden ylioppilaiden koesuoritukset. Pystyt suodattamaan tulokset koko maan tai koulun
+    <p>Tällä sivulla näet valmistuneiden ylioppilaiden koesuoritukset. Pystyt suodattamaan tulokset koko Suomen parhaan
+        sadan joukosta tai koulun
         tasolla</p>
 
     <!-- <h5>Yhteensä ylioppilaita: </h5> -->
+
+    <form action="/top100">
+        <button type="submit">Top 100</button>
+    </form>
 
     <form action="/" method="get">
         <input type="text" placeholder="lukio" name="lukio">
@@ -67,6 +72,8 @@
             <!-- <td>{{ gender[post['sukup']] }}</td> -->
             <td>{{ post['yht'] }}</td>
 
+
+
             {% set values = [] %}
             {% for column in ['A', 'O', 'Z', 'I', 'W', 'Q', 'A5', 'O5', 'M', 'N', 'BI', 'FF', 'FY', 'HI', 'PS', 'UE',
             'UO', 'ET', 'GE', 'KE', 'TE', 'YH', 'BA', 'BB', 'CA', 'CB', 'EA', 'FA', 'SA', 'PA', 'VA', 'EC', 'FC', 'SC',
@@ -83,16 +90,16 @@
             <td>{{ value_to_letter[value] }}</td>
             {% endfor %}
 
-            <!-- {% for column in ['A', 'O', 'Z', 'I', 'W', 'Q', 'A5', 'O5', 'M', 'N', 'BI', 'FF', 'FY', 'HI', 'PS', 'UE',
-            'UO', 'ET', 'GE', 'KE', 'TE', 'YH', 'BA', 'BB', 'CA', 'CB', 'EA', 'FA', 'SA', 'PA', 'VA', 'EC', 'FC', 'SC',
-            'PC', 'VC', 'DC', 'IC', 'QC', 'GC', 'TC', 'L1', 'L7'] %}
-            {% set value = post[column] %}
+            <td>
+                <div>
+                    <form action="/info" method="get" style="margin: 0; padding: 0; ">
+                        <input name="pupil_id" value="{{ post['random_id'] }}" type="text" style="display: none;">
+                        <button type="submit">INFO</button>
+                    </form>
+                </div>
 
-            {% if value %}
-            <td>{{ value_to_letter[value] }}</td>
+            </td>
 
-            {% endif %}
-            {% endfor %} -->
         </tr>
         {% endfor %}
 

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/styles.css">
+
+    <title>Ylioppilas tilastot</title>
+</head>
+
+<body>
+
+    <!-- <h1>
+        {{ ids }}
+    </h1>> -->
+
+
+
+
+    <table class="table">
+        <thead class=" thead-dark small">
+            <tr>
+                <th>Sukupuoli</th>
+                <th>pisteet</th>
+
+
+
+                {% for post in data %}
+                <th>
+                    {% set values = [] %}
+                    {% for column in ['A', 'O', 'Z', 'I', 'W', 'Q', 'A5', 'O5', 'M', 'N', 'BI', 'FF', 'FY', 'HI', 'PS',
+                    'UE',
+                    'UO', 'ET', 'GE', 'KE', 'TE', 'YH', 'BA', 'BB', 'CA', 'CB', 'EA', 'FA', 'SA', 'PA', 'VA', 'EC',
+                    'FC',
+                    'SC',
+                    'PC', 'VC', 'DC', 'IC', 'QC', 'GC', 'TC', 'L1', 'L7'] %}
+
+                    {% set value = post[column] %}
+                    {% if value %}
+                    {% set values = values.append(column) %}
+                    {% endif %}
+                    {% endfor %}
+
+
+                    {% for value in values %}
+
+                    {% for i in ids %}
+                    {% if i.koe == value %}
+                <td>{{ i.nimi }}</td>
+                {% endif %}
+                {% endfor %}
+                <!-- <td>{{ value }}</td> -->
+                {% endfor %}
+                </th>
+                {% endfor %}
+
+
+
+                <!-- {% for post in data %}
+                <th>
+
+                    {{ post}}
+                    {% set value_to_letter = {"0": 'I',"2": 'A','3': 'B','4': 'C', '5': 'M','6': 'E', "7": 'L'} %}
+
+
+                    {% set values = [] %}
+                    {% for column in ['A', 'O', 'Z', 'I', 'W', 'Q', 'A5', 'O5', 'M', 'N', 'BI', 'FF', 'FY', 'HI',
+                    'PS',
+                    'UE',
+                    'UO', 'ET', 'GE', 'KE', 'TE', 'YH', 'BA', 'BB', 'CA', 'CB', 'EA', 'FA', 'SA', 'PA', 'VA', 'EC',
+                    'FC',
+                    'SC',
+                    'PC', 'VC', 'DC', 'IC', 'QC', 'GC', 'TC', 'L1', 'L7'] %}
+                    {% set value = post[column] %}
+                    {% if value %}
+                    {% set values = values.append(column) %}
+                    {% endif %}
+                    {% endfor %}
+
+
+                    {% for value in values %}
+                <th>{{ value_to_letter[value] }}</th>
+                {% endfor %}
+
+                </th>
+                {% endfor %} -->
+
+
+
+                <!-- {% for post in exams %}
+                    <th class="small"> {{ post }}</th>
+
+                    {% endfor %} -->
+
+
+
+
+                <!-- {% set values = [] %}
+                {% for column in ['A', 'O', 'Z', 'I', 'W', 'Q', 'A5', 'O5', 'M', 'N', 'BI', 'FF', 'FY', 'HI', 'PS',
+                'UE',
+                'UO', 'ET', 'GE', 'KE', 'TE', 'YH', 'BA', 'BB', 'CA', 'CB', 'EA', 'FA', 'SA', 'PA', 'VA', 'EC', 'FC',
+                'SC',
+                'PC', 'VC', 'DC', 'IC', 'QC', 'GC', 'TC', 'L1', 'L7'] %}
+                <th> {{column}} </th>
+                {% set value = data[column] %}
+                {% if value %}
+                {% set values = values.append(value) %}
+                {% endif %}
+                {% endfor %} -->
+
+
+
+                <!-- {% for value in data %}
+                <th>{{ value }}</th>
+                {% endfor %} -->
+
+
+                <!-- {% for column in ['A', 'O', 'Z', 'I', 'W', 'Q', 'A5', 'O5', 'M', 'N', 'BI', 'FF', 'FY', 'HI', 'PS',
+                'UE',
+                'UO', 'ET', 'GE', 'KE', 'TE', 'YH', 'BA', 'BB', 'CA', 'CB', 'EA', 'FA', 'SA', 'PA', 'VA', 'EC', 'FC',
+                'SC',
+                'PC', 'VC', 'DC', 'IC', 'QC', 'GC', 'TC', 'L1', 'L7'] %}
+
+
+                <th>{{ column }}</th>
+                {% endfor %} -->
+
+                <!-- {% for post in exams %}
+                <th class="small"> {{ post[0] }}</th>
+
+                {% endfor %} -->
+
+            </tr>
+        </thead>
+
+        {% set value_to_letter = {"0": 'I',"2": 'A','3': 'B','4': 'C', '5': 'M','6': 'E', "7": 'L'} %}
+        {% set gender = {"1": "mies", "2":"nainen", } %}
+
+        {% for post in data %}
+        <tr>
+
+            <td>{{ gender[post['sukup']] }}</td>
+            <td>{{ post['yht'] }}</td>
+            <td></td>
+
+            {% set values = [] %}
+            {% for column in ['A', 'O', 'Z', 'I', 'W', 'Q', 'A5', 'O5', 'M', 'N', 'BI', 'FF', 'FY', 'HI', 'PS',
+            'UE',
+            'UO', 'ET', 'GE', 'KE', 'TE', 'YH', 'BA', 'BB', 'CA', 'CB', 'EA', 'FA', 'SA', 'PA', 'VA', 'EC', 'FC',
+            'SC',
+            'PC', 'VC', 'DC', 'IC', 'QC', 'GC', 'TC', 'L1', 'L7'] %}
+            {% set value = post[column] %}
+            {% if value %}
+            {% set values = values.append(value) %}
+            {% endif %}
+            {% endfor %}
+
+
+            {% for value in values %}
+            <td>{{ value_to_letter[value] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+</html>
